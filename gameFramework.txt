@@ -1,0 +1,39 @@
+Game engine:
+	
+	Renderables:
+		Textured rectangles w/ screen coordinates
+
+	Game:
+		Gamestates, different "worlds" rendered onto one window
+		Main window
+		Collection of renderables
+		Game loop
+			Tickrate
+			gameState->Update
+			gameState->Render
+
+	Asset loader/manager:
+		Sound
+		Sprites
+		Fonts
+		Loads all "things" from folder, adds into static dicts with format filename : <file>
+
+	Pseudo-RNG:
+		Range
+
+	Timer:
+		Tick(deltaTime) returns true/false, resets timer automagically
+		Disable()/Enable()
+
+	UI:
+		Buttons, generic OnClick-functions (lambda?)
+		Lists of buttons (menus)
+	
+	Input manager:
+		Mouseclicks
+		Keystrokes
+
+	Animation:
+		Spritesheet handler
+		Timer for ticking the frames
+		sf::Sprite::setTextureRect
