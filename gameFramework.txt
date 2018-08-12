@@ -33,7 +33,7 @@ Game engine:
 		Mouseclicks
 		Keystrokes
 
-	Animation:
-		Spritesheet handler
-		Timer for ticking the frames
-		sf::Sprite::setTextureRect
+	* Animation:
+		* Spritesheet handler
+		* Timer for ticking the frames
+		* sf::Sprite::setTextureRect
