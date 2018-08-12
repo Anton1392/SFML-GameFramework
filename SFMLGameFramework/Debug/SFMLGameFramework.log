@@ -1,5 +1,0 @@
-﻿  Game.cpp
-d:\development\c++\sfmlgameframework\sfmlgameframework\game.cpp(53): warning C4018: '<': signed/unsigned mismatch
-d:\development\c++\sfmlgameframework\sfmlgameframework\game.cpp(77): warning C4715: 'Game::getGameState': not all control paths return a value
-  SFMLGameFramework.vcxproj -> D:\DEVELOPMENT\C++\SFMLGameFramework\Debug\SFMLGameFramework.exe
-  SFMLGameFramework.vcxproj -> D:\DEVELOPMENT\C++\SFMLGameFramework\Debug\SFMLGameFramework.pdb (Partial PDB)
