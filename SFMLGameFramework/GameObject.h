@@ -2,6 +2,8 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "AnimationHandler.h"
+
 // Base game object, controls location + size of object, and its sprite.
 class GameObject
 {
@@ -15,6 +17,10 @@ class GameObject
 		void setSize(float w, float h);
 
 		sf::Sprite* getSprite();
+
+		AnimationHandler anim;
+
+		void update(float deltaTime);
 
 	private: 
 		sf::Sprite sprite;

@@ -21,9 +21,9 @@ Game engine:
 	* Pseudo-RNG:
 		* Range
 
-	Timer:
-		Tick(deltaTime) returns true/false, resets timer automagically
-		Disable()/Enable()
+	* Timer:
+		* Tick(deltaTime) returns true/false, resets timer automagically
+		* Disable()/Enable()
 
 	UI:
 		Buttons, generic OnClick-functions (lambda?)

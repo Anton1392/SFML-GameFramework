@@ -5,11 +5,14 @@ using namespace sf;
 using namespace std;
 
 GameObject::GameObject(int x, int y, string textureName)
+	:anim{textureName}
 {
 	// Initializes texture and position.
 	Texture* t{ AssetManager::getTexture(textureName) };
 	sprite.setTexture(*t);
 	setPosition(x, y);
+
+	anim.setAnimation(&sprite, 6);
 }
 
 void GameObject::setPosition(int x, int y)
@@ -41,4 +44,9 @@ void GameObject::setSize(float w, float h)
 Sprite* GameObject::getSprite()
 {
 	return &sprite;
+}
+
+void GameObject::update(float deltaTime)
+{
+	anim.tick(deltaTime);
 }

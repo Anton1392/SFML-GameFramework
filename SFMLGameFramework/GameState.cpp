@@ -31,4 +31,8 @@ void GameState::render(RenderWindow* win)
 void GameState::update(float deltaTime)
 {
 	// Implement game here
+	for (GameObject* o : gameObjects)
+	{
+		o->update(deltaTime);
+	}
 }

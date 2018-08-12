@@ -25,9 +25,16 @@ void Game::run()
 	addGameState(new GameState("MENU"));
 	setGameState("MAIN");
 
-	GameObject g{100, 100, "test"};
+	GameObject g{100, 100, "anim"};
+	g.setSize(256, 256);
+	g.anim.setInterval(1.0/10);
+
+	GameObject g2{100, 400, "anim2"};
+	g2.setSize(108, 150);
+	g2.anim.setInterval(0.1);
 
 	currentState()->addGameObject(&g);
+	currentState()->addGameObject(&g2);
 
 	// Measures frame time
 	sf::Clock clock;
@@ -41,7 +48,7 @@ void Game::run()
 				win.close();
 		}
 
-		// Mesaure frame time
+		// Measure frame time
 		float deltaTime = clock.getElapsedTime().asSeconds();
 		clock.restart();
 
