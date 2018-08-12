@@ -11,7 +11,7 @@ class GameObject
 		void setPosition(int x, int y);
 
 		sf::Vector2f getSize();
-		void setSize(int w, int h);
+		void setSize(float w, float h);
 
 		sf::Sprite* getSprite();
 

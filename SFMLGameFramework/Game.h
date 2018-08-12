@@ -1,18 +1,19 @@
 #pragma once
-#include "GameObject.h"
+
+#include "GameState.h"
 
 class Game
 {
 	public:
 		Game();
 		void run();
-		void addGameObject(GameObject* obj);
+		void addGameState(GameState* state);
+		void setGameState(std::string stateName);
+		GameState* currentState();
+		GameState* getGameState(std::string stateName);
 
 	private:
-		void update();
-		void render();
-
-		std::vector<GameObject*> gameObjects;
-
+		int currentGameStateIdx;
 		sf::RenderWindow win;
+		std::vector<GameState*> gameStates;
 };

@@ -3,12 +3,14 @@
 
 #include "Game.h"
 #include "AssetManager.h"
+#include "GameObject.h"
+#include "GameState.h"
 
 using namespace sf;
 using namespace std;
 
 Game::Game()
-	:win(sf::VideoMode(800, 600), "SFML Window")
+	:win{ sf::VideoMode(800, 600), "SFML Window" }
 {
 	win.setFramerateLimit(144);
 }
@@ -17,8 +19,13 @@ void Game::run()
 {
 	AssetManager::Load();
 
+	addGameState(new GameState("MAIN"));
+	addGameState(new GameState("MENU"));
+	setGameState("MAIN");
+
 	GameObject g{100, 100, "test"};
-	addGameObject(&g);
+
+	currentState()->addGameObject(&g);
 
 	while (win.isOpen())
 	{
@@ -30,31 +37,40 @@ void Game::run()
 				win.close();
 		}
 
-		update();
-
-		render();
+		currentState()->update();
+		currentState()->render(&win);
 	}
 }
 
-void Game::update()
+void Game::addGameState(GameState* state)
 {
-	// Implement game here
+	gameStates.push_back(state);
 }
 
-void Game::render()
+void Game::setGameState(string stateName)
 {
-	win.clear();
-
-	for (GameObject* obj : gameObjects)
+	for (int i = 0; i < gameStates.size(); i++)
 	{
-		Sprite* s = obj->getSprite();
-		win.draw(*s);
+		if (gameStates[i]->name == stateName)
+		{
+			currentGameStateIdx = i;
+			break;
+		}
 	}
-
-	win.display();
 }
 
-void Game::addGameObject(GameObject* obj)
+GameState* Game::currentState()
 {
-	gameObjects.push_back(obj);
+	return gameStates[currentGameStateIdx];
+}
+
+GameState* Game::getGameState(string stateName)
+{
+	for (GameState* g : gameStates)
+	{
+		if (g->name == stateName)
+		{
+			return g;
+		}
+	}
 }

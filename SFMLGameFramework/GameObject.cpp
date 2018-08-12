@@ -27,8 +27,9 @@ Vector2f GameObject::getSize()
 	return Vector2f{ rect.width, rect.height };
 }
 
-void GameObject::setSize(int w, int h)
+void GameObject::setSize(float w, float h)
 {
+	sprite.setScale(1, 1);
 	FloatRect rect = sprite.getGlobalBounds();
 	float oldW{ rect.width };
 	float oldH{ rect.height };
