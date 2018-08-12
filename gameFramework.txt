@@ -18,8 +18,8 @@ Game engine:
 		Fonts
 		Loads all "things" from folder, adds into static dicts with format filename : <file>
 
-	Pseudo-RNG:
-		Range
+	* Pseudo-RNG:
+		* Range
 
 	Timer:
 		Tick(deltaTime) returns true/false, resets timer automagically

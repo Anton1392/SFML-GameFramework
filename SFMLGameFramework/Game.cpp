@@ -5,6 +5,7 @@
 #include "AssetManager.h"
 #include "GameObject.h"
 #include "GameState.h"
+#include "Tools.h"
 
 using namespace sf;
 using namespace std;
@@ -12,7 +13,7 @@ using namespace std;
 Game::Game()
 	:win{ sf::VideoMode(800, 600), "SFML Window" }
 {
-	win.setFramerateLimit(144);
+	win.setFramerateLimit(20);
 }
 
 void Game::run()
@@ -27,6 +28,9 @@ void Game::run()
 	GameObject g{100, 100, "test"};
 
 	currentState()->addGameObject(&g);
+
+	Timer t{ 2 };
+	t.setInterval(1);
 
 	// Measures frame time
 	sf::Clock clock;
@@ -47,6 +51,11 @@ void Game::run()
 		// Update and render current state.
 		currentState()->update(deltaTime);
 		currentState()->render(&win);
+
+		if (t.tick(deltaTime))
+		{
+			AssetManager::playSound("test");
+		}
 	}
 }
 
