@@ -13,7 +13,7 @@ using namespace std;
 Game::Game()
 	:win{ sf::VideoMode(800, 600), "SFML Window" }
 {
-	win.setFramerateLimit(20);
+	win.setFramerateLimit(144);
 }
 
 void Game::run()
@@ -28,9 +28,6 @@ void Game::run()
 	GameObject g{100, 100, "test"};
 
 	currentState()->addGameObject(&g);
-
-	Timer t{ 2 };
-	t.setInterval(1);
 
 	// Measures frame time
 	sf::Clock clock;
@@ -51,11 +48,6 @@ void Game::run()
 		// Update and render current state.
 		currentState()->update(deltaTime);
 		currentState()->render(&win);
-
-		if (t.tick(deltaTime))
-		{
-			AssetManager::playSound("test");
-		}
 	}
 }
 

@@ -12,8 +12,12 @@ class Timer
 		Timer(float seconds);
 		bool tick(float deltaTime);
 		void setInterval(float seconds);
+		void toggle();
+		void enable();
+		void disable();
 
 	private:
 		float interval;
 		float counter = 0;
+		bool active = true;
 };
