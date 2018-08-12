@@ -7,11 +7,13 @@ GameState::GameState(string _name)
 	:name{_name}
 {}
 
+// Adds a game object to this state.
 void GameState::addGameObject(GameObject* obj)
 {
 	gameObjects.push_back(obj);
 }
 
+// Draws all game objects onto the provided window.
 void GameState::render(RenderWindow* win)
 {
 	win->clear();
@@ -25,7 +27,8 @@ void GameState::render(RenderWindow* win)
 	win->display();
 }
 
-void GameState::update()
+// Main game loop.
+void GameState::update(float deltaTime)
 {
 	// Implement game here
 }

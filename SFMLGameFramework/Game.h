@@ -2,6 +2,7 @@
 
 #include "GameState.h"
 
+// Handles the game in general.
 class Game
 {
 	public:

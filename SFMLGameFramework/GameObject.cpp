@@ -6,6 +6,7 @@ using namespace std;
 
 GameObject::GameObject(int x, int y, string textureName)
 {
+	// Initializes texture and position.
 	Texture* t{ AssetManager::getTexture(textureName) };
 	sprite.setTexture(*t);
 	setPosition(x, y);
@@ -29,6 +30,7 @@ Vector2f GameObject::getSize()
 
 void GameObject::setSize(float w, float h)
 {
+	// Resets the scale, then rescales it to fit the new dimensions.
 	sprite.setScale(1, 1);
 	FloatRect rect = sprite.getGlobalBounds();
 	float oldW{ rect.width };

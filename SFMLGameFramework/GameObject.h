@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 
+// Base game object, controls location + size of object, and its sprite.
 class GameObject
 {
 	public:

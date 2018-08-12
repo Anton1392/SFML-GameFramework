@@ -17,8 +17,9 @@ Game::Game()
 
 void Game::run()
 {
-	AssetManager::Load();
+	AssetManager::load();
 
+	// Creates game states
 	addGameState(new GameState("MAIN"));
 	addGameState(new GameState("MENU"));
 	setGameState("MAIN");
@@ -27,6 +28,8 @@ void Game::run()
 
 	currentState()->addGameObject(&g);
 
+	// Measures frame time
+	sf::Clock clock;
 	while (win.isOpen())
 	{
 		sf::Event event;
@@ -37,7 +40,12 @@ void Game::run()
 				win.close();
 		}
 
-		currentState()->update();
+		// Mesaure frame time
+		float deltaTime = clock.getElapsedTime().asSeconds();
+		clock.restart();
+
+		// Update and render current state.
+		currentState()->update(deltaTime);
 		currentState()->render(&win);
 	}
 }
@@ -47,6 +55,7 @@ void Game::addGameState(GameState* state)
 	gameStates.push_back(state);
 }
 
+// Sets which gamestate to use.
 void Game::setGameState(string stateName)
 {
 	for (int i = 0; i < gameStates.size(); i++)
@@ -59,11 +68,13 @@ void Game::setGameState(string stateName)
 	}
 }
 
+// Returns current state.
 GameState* Game::currentState()
 {
 	return gameStates[currentGameStateIdx];
 }
 
+// Returns a particular gamestate by name.
 GameState* Game::getGameState(string stateName)
 {
 	for (GameState* g : gameStates)

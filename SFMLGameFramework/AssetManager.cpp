@@ -1,18 +1,27 @@
-#include "AssetManager.h"
-
 #include <string>
 #include <map>
 #include <iostream>
+#include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
+
+#include "AssetManager.h"
 
 using namespace std;
 using namespace sf;
 
+// Static dictionary of all textures.
 map<string, Texture> AssetManager::textures;
+map<string, SoundBuffer> AssetManager::sounds;
+vector<Sound> AssetManager::activeSounds;
 
-void AssetManager::Load()
+// Loads all assets, they are only stored in memory once.
+void AssetManager::load()
 {
+	// Expand this array to add more textures for loading.
 	string textureNames[] = {"test"};
+	string soundNames[] = {"test"};
 
+	// Loads and stores all textures.
 	for (string s : textureNames)
 	{
 		Texture t;
@@ -20,9 +29,43 @@ void AssetManager::Load()
 		textures[s] = t;
 		cout << "Texture " + s + " successfully loaded." << endl;
 	}
+
+	// Loads and stores all sounds
+	for (string s : soundNames)
+	{
+		SoundBuffer bf;
+		bf.loadFromFile("../res/sounds/" + s + ".wav");
+		sounds[s] = bf;
+		cout << "Sound " + s + " successfully loaded." << endl;
+	}
+
+	// Sets up the sound vector with quiet sounds.
+	for (int i = 0; i < soundChannelCount; i++)
+	{
+		Sound s;
+		activeSounds.push_back(s);
+	}
 }
 
+// Returns a texture by name.
 Texture* AssetManager::getTexture(string name)
 {
 	return &textures[name];
+}
+
+// Plays a sound
+void AssetManager::playSound(string name)
+{
+	// Finds a non-playing sound, and plays the soundbuffer in that slot.
+	//for (Sound s : activeSounds)
+	for(int i = 0; i < activeSounds.size(); i++)
+	{
+		if (activeSounds[i].getStatus() != SoundSource::Status::Playing)
+		{
+			activeSounds[i].setBuffer(sounds[name]);
+			activeSounds[i].play();
+			cout << "Tried playing sound " + name + "." << endl;
+			break;
+		}
+	}
 }
