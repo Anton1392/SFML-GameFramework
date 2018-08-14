@@ -3,11 +3,17 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include <sstream>
+
+#include <filesystem>
 
 #include "AssetManager.h"
 
+
 using namespace std;
 using namespace sf;
+using namespace std::experimental::filesystem;
+
 
 // Static dictionary of all textures.
 map<string, Texture> AssetManager::textures;
@@ -18,36 +24,57 @@ vector<Sound> AssetManager::activeSounds;
 // Loads all assets, they are only stored in memory once.
 void AssetManager::load()
 {
-	// Expand this array to add more textures for loading.
-	string textureNames[] = {"test", "anim", "anim2", "button", "textbox"};
-	string soundNames[] = {"test"};
-	string fontNames[] = {"test"};
-
-	// Loads and stores all textures.
-	for (string s : textureNames)
+	// Loads all textures, fonts, and sounds that are in their specific folders.
+	string path = "../res/textures/";
+	for (auto & p : directory_iterator(path))
 	{
+		// Convert the path to a string(stream)
+		ostringstream oss;
+		oss << p;
+
+		// Load texture
 		Texture t;
-		t.loadFromFile("../res/textures/" + s + ".png");
-		textures[s] = t;
-		cout << "Texture " + s + " successfully loaded." << endl;
+		t.loadFromFile(oss.str());
+
+		// Store texture
+		string name = p.path().filename().string();
+		textures[name] = t;
+		cout << "Texture " + name + " successfully loaded." << endl;
 	}
 
-	// Loads and stores all fonts
-	for (string s : fontNames)
+	path = "../res/fonts/";
+	for (auto & p : directory_iterator(path))
 	{
+		// Convert the path to a string(stream)
+		ostringstream oss;
+		oss << p;
+
+		// Load font
 		Font f;
-		f.loadFromFile("../res/fonts/" + s + ".ttf");
-		fonts[s] = f;
-		cout << "Font " + s + " successfully loaded." << endl;
+		f.loadFromFile(oss.str());
+
+		// Store font
+		string name = p.path().filename().string();
+		fonts[name] = f;
+		cout << "Font " + name + " successfully loaded." << endl;
 	}
 
-	// Loads and stores all sounds
-	for (string s : soundNames)
+	path = "../res/sounds/";
+	for (auto & p : directory_iterator(path))
 	{
-		SoundBuffer bf;
-		bf.loadFromFile("../res/sounds/" + s + ".wav");
-		sounds[s] = bf;
-		cout << "Sound " + s + " successfully loaded." << endl;
+		// Convert the path to a string(stream)
+		ostringstream oss;
+		oss << p;
+
+		// Load sound
+		SoundBuffer s;
+		s.loadFromFile(oss.str());
+
+		// Store sound
+		string name = p.path().filename().string();
+		sounds[name] = s;
+
+		cout << "Sound " + name + " successfully loaded." << endl;
 	}
 
 	// Sets up the sound vector with quiet sounds.
@@ -81,7 +108,6 @@ void AssetManager::playSound(string name)
 		{
 			activeSounds[i].setBuffer(sounds[name]);
 			activeSounds[i].play();
-			cout << "Tried playing sound " + name + "." << endl;
 			break;
 		}
 	}

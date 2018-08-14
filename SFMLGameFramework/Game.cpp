@@ -20,7 +20,8 @@ Game::Game()
 
 void btnTest()
 {
-	cout << "HELLO MR BUTTON" << endl;
+	cout << "HELLO MR BUTTON ME PLAY SOUND NOW" << endl;
+	AssetManager::playSound("test.wav");
 }
 
 void Game::run()
@@ -33,7 +34,7 @@ void Game::run()
 	addGameState(new GameState("MAIN"));
 	setGameState("MAIN");
 
-	GameObject g{100, 100, "anim"};
+	GameObject g{100, 100, "anim.png"};
 	g.anim.setAnimation(g.getSprite(), 6);
 	g.setSize(256, 256);
 	g.anim.setInterval(1.0/10);

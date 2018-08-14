@@ -9,7 +9,7 @@ using namespace std;
 using namespace sf;
 
 Button::Button(int x, int y, int w, int h, string txt, void(*f)())
-	:GameObject(x, y, "button")
+	:GameObject(x, y, "button.png")
 {
 	// Set button visuals
 	anim.disable();
@@ -20,7 +20,7 @@ Button::Button(int x, int y, int w, int h, string txt, void(*f)())
 
 	// Text visuals
 	text.setString(txt);
-	text.setFont(*AssetManager::getFont("test"));
+	text.setFont(*AssetManager::getFont("test.ttf"));
 	text.setFillColor(sf::Color::White);
 
 	// Text centering
@@ -43,7 +43,7 @@ sf::Text* Button::getText()
 }
 
 TextBox::TextBox(int x, int y, int w, int h, string txt)
-	:GameObject(x, y, "textbox")
+	:GameObject(x, y, "textbox.png")
 {
 	// Set textbox visuals
 	anim.disable();
@@ -51,7 +51,7 @@ TextBox::TextBox(int x, int y, int w, int h, string txt)
 
 	// Text visuals
 	text.setString(txt);
-	text.setFont(*AssetManager::getFont("test"));
+	text.setFont(*AssetManager::getFont("test.ttf"));
 	text.setFillColor(sf::Color::White);
 
 	// Text centering
