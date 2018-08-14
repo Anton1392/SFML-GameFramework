@@ -19,7 +19,7 @@ vector<Sound> AssetManager::activeSounds;
 void AssetManager::load()
 {
 	// Expand this array to add more textures for loading.
-	string textureNames[] = {"test", "anim", "anim2", "button"};
+	string textureNames[] = {"test", "anim", "anim2", "button", "textbox"};
 	string soundNames[] = {"test"};
 	string fontNames[] = {"test"};
 

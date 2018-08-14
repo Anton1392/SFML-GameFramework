@@ -22,10 +22,6 @@ void btnTest()
 {
 	cout << "HELLO MR BUTTON" << endl;
 }
-void btnTest2()
-{
-	cout << "BUTTON NUMBER 2" << endl;
-}
 
 void Game::run()
 {
@@ -41,14 +37,11 @@ void Game::run()
 	g.anim.setAnimation(g.getSprite(), 6);
 	g.setSize(256, 256);
 	g.anim.setInterval(1.0/10);
-
 	currentState()->addGameObject(&g);
 
-	Button b{ 0,0,200,50,"hi", btnTest };
-	Button b2{ 300, 300 ,300 ,500,"hello", btnTest2 };
-	currentState()->ui.addButton(&b);
-	currentState()->ui.addButton(&b2);
-
+	currentState()->ui.addButton(0,0,200,50,"hi", btnTest );
+	currentState()->ui.addTextBox(400, 400, 200, 100, "ur mom gey");
+	currentState()->ui.addTextBox(400, 520, 200, 100, "no u");
 
 	// Measures frame time
 	sf::Clock clock;
