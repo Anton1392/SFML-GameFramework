@@ -9,6 +9,8 @@ class GameState
 		void addGameObject(GameObject* obj);
 		void update(float deltaTime);
 		void render(sf::RenderWindow* win);
+		void processMouseInput(sf::Mouse::Button b);
+		void processKeyBoardInput(sf::Keyboard::Key k);
 
 		std::string name;
 

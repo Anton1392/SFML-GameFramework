@@ -36,6 +36,9 @@
     <ClInclude Include="AnimationHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -58,6 +61,9 @@
     </ClCompile>
     <ClCompile Include="AnimationHandler.cpp">
       <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

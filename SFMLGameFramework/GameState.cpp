@@ -1,4 +1,7 @@
+#include <iostream>
+
 #include "GameState.h"
+#include "InputManager.h"
 
 using namespace sf;
 using namespace std;
@@ -34,5 +37,28 @@ void GameState::update(float deltaTime)
 	for (GameObject* o : gameObjects)
 	{
 		o->update(deltaTime);
+	}
+}
+
+void GameState::processMouseInput(Mouse::Button b)
+{
+	// IMPLEMENT NEEDED CLICK LOGIC HERE
+	for (GameObject* g : gameObjects)
+	{
+		if (InputManager::isObjectClicked(g, b))
+		{
+
+			cout << "An object was clicked with button " << b << "." << endl;
+		}
+	}
+}
+
+void GameState::processKeyBoardInput(Keyboard::Key k)
+{
+	// IMPLEMENT NEEDED KEY LOGIC HERE
+	cout << "Key " << k << " was pressed" << endl;
+	if (k == Keyboard::Escape)
+	{
+		cout << "It was escape." << endl;
 	}
 }

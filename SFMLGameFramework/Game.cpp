@@ -6,6 +6,7 @@
 #include "GameObject.h"
 #include "GameState.h"
 #include "Tools.h"
+#include "InputManager.h"
 
 using namespace sf;
 using namespace std;
@@ -18,7 +19,9 @@ Game::Game()
 
 void Game::run()
 {
+	// Initial setup
 	AssetManager::load();
+	InputManager::setWindow(&win);
 
 	// Creates game states
 	addGameState(new GameState("MAIN"));
@@ -46,6 +49,14 @@ void Game::run()
 			// Close window: exit
 			if (event.type == sf::Event::Closed)
 				win.close();
+
+			// If the mouse was pressed
+			if (event.type == Event::MouseButtonPressed)
+				currentState()->processMouseInput(event.mouseButton.button);
+
+			// If a key was pressed
+			if (event.type == Event::KeyPressed)
+				currentState()->processKeyBoardInput(event.key.code);
 		}
 
 		// Measure frame time
