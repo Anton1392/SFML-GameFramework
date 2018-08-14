@@ -12,7 +12,7 @@ GameObject::GameObject(int x, int y, string textureName)
 	sprite.setTexture(*t);
 	setPosition(x, y);
 
-	anim.setAnimation(&sprite, 6);
+	anim.setAnimation(&sprite, 1);
 }
 
 void GameObject::setPosition(int x, int y)

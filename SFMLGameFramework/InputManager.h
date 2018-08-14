@@ -10,6 +10,7 @@ class InputManager
 		static bool isSpriteClicked(sf::Sprite* s, sf::Mouse::Button b);
 		static bool isObjectClicked(GameObject* g, sf::Mouse::Button b);
 
-	private:
+	private: 
+		// The window to check clicks within.
 		static sf::RenderWindow* win;
 };

@@ -11,6 +11,7 @@ using namespace sf;
 
 // Static dictionary of all textures.
 map<string, Texture> AssetManager::textures;
+map<string, Font> AssetManager::fonts;
 map<string, SoundBuffer> AssetManager::sounds;
 vector<Sound> AssetManager::activeSounds;
 
@@ -18,8 +19,9 @@ vector<Sound> AssetManager::activeSounds;
 void AssetManager::load()
 {
 	// Expand this array to add more textures for loading.
-	string textureNames[] = {"test", "anim", "anim2"};
+	string textureNames[] = {"test", "anim", "anim2", "button"};
 	string soundNames[] = {"test"};
+	string fontNames[] = {"test"};
 
 	// Loads and stores all textures.
 	for (string s : textureNames)
@@ -28,6 +30,15 @@ void AssetManager::load()
 		t.loadFromFile("../res/textures/" + s + ".png");
 		textures[s] = t;
 		cout << "Texture " + s + " successfully loaded." << endl;
+	}
+
+	// Loads and stores all fonts
+	for (string s : fontNames)
+	{
+		Font f;
+		f.loadFromFile("../res/fonts/" + s + ".ttf");
+		fonts[s] = f;
+		cout << "Font " + s + " successfully loaded." << endl;
 	}
 
 	// Loads and stores all sounds
@@ -51,6 +62,12 @@ void AssetManager::load()
 Texture* AssetManager::getTexture(string name)
 {
 	return &textures[name];
+}
+
+// Returns a font by name.
+Font* AssetManager::getFont(string name)
+{
+	return &fonts[name];
 }
 
 // Plays a sound

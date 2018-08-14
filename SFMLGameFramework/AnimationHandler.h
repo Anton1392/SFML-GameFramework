@@ -11,8 +11,11 @@ class AnimationHandler
 		void tick(float deltaTime);
 		void setAnimation(sf::Sprite* sprite, int totalFrames);
 		void setInterval(float seconds);
+		void disable();
+		void enable();
 
 	private:
+		bool enabled = true;
 		sf::Sprite* sprite;
 		Timer t;
 		int totalFrames;

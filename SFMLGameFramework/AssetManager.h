@@ -9,11 +9,14 @@ class AssetManager
 	public:
 		static void load();
 		static sf::Texture* getTexture(std::string name);
+		static sf::Font* getFont(std::string name);
 		static void playSound(std::string name);
 		static const int soundChannelCount = 50;
 
 	private:
 		static std::map<std::string, sf::Texture> textures;
+
+		static std::map<std::string, sf::Font> fonts;
 
 		static std::map<std::string, sf::SoundBuffer> sounds;
 		static std::vector<sf::Sound> activeSounds;

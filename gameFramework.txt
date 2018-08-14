@@ -15,7 +15,7 @@ Game engine:
 	Asset loader/manager:
 		* Sound
 		* Sprites
-		Fonts
+		* Fonts
 		Loads all "things" from folder, adds into static dicts with format filename : <file>
 
 	* Pseudo-RNG:
@@ -24,16 +24,16 @@ Game engine:
 	* Timer:
 		* Tick(deltaTime) returns true/false, resets timer automagically
 		* Disable()/Enable()
-
-	UI:
-		Buttons, generic OnClick-functions (lambda?)
-		Lists of buttons (menus)
 	
-	Input manager:
-		Mouseclicks
-		Keystrokes
+	* Input manager:
+		* Mouseclicks
+		* Keystrokes
 
 	* Animation:
 		* Spritesheet handler
 		* Timer for ticking the frames
 		* sf::Sprite::setTextureRect
+
+	* UI:
+		* Buttons, generic OnClick-functions (lambda?)
+		Lists of buttons (menus)

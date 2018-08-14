@@ -1,5 +1,6 @@
 #pragma once
 #include "GameObject.h"
+#include "UI.h"
 
 // Handles a particular game state, e.g main game, menu, pause, etc.
 class GameState
@@ -13,6 +14,8 @@ class GameState
 		void processKeyBoardInput(sf::Keyboard::Key k);
 
 		std::string name;
+
+		UI ui;
 
 	private:
 		std::vector<GameObject*> gameObjects;

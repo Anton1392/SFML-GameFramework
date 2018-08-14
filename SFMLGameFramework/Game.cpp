@@ -7,14 +7,24 @@
 #include "GameState.h"
 #include "Tools.h"
 #include "InputManager.h"
+#include "UI.h"
 
 using namespace sf;
 using namespace std;
 
 Game::Game()
-	:win{ sf::VideoMode(800, 600), "SFML Window" }
+	:win{ sf::VideoMode(1280, 1024), "SFML Window" }
 {
 	win.setFramerateLimit(144);
+}
+
+void btnTest()
+{
+	cout << "HELLO MR BUTTON" << endl;
+}
+void btnTest2()
+{
+	cout << "BUTTON NUMBER 2" << endl;
 }
 
 void Game::run()
@@ -25,19 +35,20 @@ void Game::run()
 
 	// Creates game states
 	addGameState(new GameState("MAIN"));
-	addGameState(new GameState("MENU"));
 	setGameState("MAIN");
 
 	GameObject g{100, 100, "anim"};
+	g.anim.setAnimation(g.getSprite(), 6);
 	g.setSize(256, 256);
 	g.anim.setInterval(1.0/10);
 
-	GameObject g2{100, 400, "anim2"};
-	g2.setSize(108, 150);
-	g2.anim.setInterval(0.1);
-
 	currentState()->addGameObject(&g);
-	currentState()->addGameObject(&g2);
+
+	Button b{ 0,0,200,50,"hi", btnTest };
+	Button b2{ 300, 300 ,300 ,500,"hello", btnTest2 };
+	currentState()->ui.addButton(&b);
+	currentState()->ui.addButton(&b2);
+
 
 	// Measures frame time
 	sf::Clock clock;

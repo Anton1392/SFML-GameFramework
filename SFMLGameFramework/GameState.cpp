@@ -7,7 +7,7 @@ using namespace sf;
 using namespace std;
 
 GameState::GameState(string _name)
-	:name{_name}
+	:name{_name}, ui{}
 {}
 
 // Adds a game object to this state.
@@ -20,6 +20,8 @@ void GameState::addGameObject(GameObject* obj)
 void GameState::render(RenderWindow* win)
 {
 	win->clear();
+
+	ui.render(win);
 
 	for (GameObject* obj : gameObjects)
 	{
@@ -51,6 +53,9 @@ void GameState::processMouseInput(Mouse::Button b)
 			cout << "An object was clicked with button " << b << "." << endl;
 		}
 	}
+
+	// The UI may have been pressed.
+	ui.processMouseInput(b);
 }
 
 void GameState::processKeyBoardInput(Keyboard::Key k)

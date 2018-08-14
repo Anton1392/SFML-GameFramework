@@ -15,6 +15,9 @@ AnimationHandler::AnimationHandler(string _textureName)
 
 void AnimationHandler::tick(float deltaTime)
 {
+	if (!enabled)
+		return;
+
 	if (t.tick(deltaTime))
 	{
 		// Resets the texture, and the texture rect.
@@ -49,4 +52,14 @@ void AnimationHandler::setAnimation(Sprite* _sprite, int _totalFrames)
 void AnimationHandler::setInterval(float seconds)
 {
 	t.setInterval(seconds);
+}
+
+void AnimationHandler::enable()
+{
+	enabled = true;
+}
+
+void AnimationHandler::disable()
+{
+	enabled = false;
 }
